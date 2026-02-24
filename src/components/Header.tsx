@@ -5,5 +5,11 @@ type HeaderProps = {
 };
 
 export function Header({ children }: HeaderProps) {
-  return <h1 className={styles.header}>{children}</h1>;
+  return (
+    <header className={styles.header}>
+      <a className={styles.logo} href="/" data-discover="true">
+        {children}
+      </a>
+    </header>
+  );
 }

@@ -25,3 +25,13 @@ body {
   background-color: var(--gray-900);
   color: var(--text-default);
 }
+
+.container {
+  max-width: 98rem;
+  margin: 0 auto;
+}
+
+.content {
+  background-color: blue;
+  margin: 3.2rem;
+}
