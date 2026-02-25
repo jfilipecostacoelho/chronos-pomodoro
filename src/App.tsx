@@ -1,17 +1,24 @@
-import "./styles/theme.css";
-import "./styles/global.css";
+import './styles/theme.css';
+import './styles/global.css';
+
+import { Container } from './components/Container';
+import { Heading } from './components/Heading';
+import { Logo } from './components/Logo';
 
 export function App() {
   return (
     <>
-      <div className="container">
-        <div className="content">
-          <section>
-            lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-            doloremque
-          </section>
-        </div>
-      </div>
+      <Container>
+        <Logo />
+      </Container>
+
+      <Container>
+        <Heading>MENU</Heading>
+      </Container>
+
+      <Container>
+        <Heading>FORM</Heading>
+      </Container>
     </>
   );
 }

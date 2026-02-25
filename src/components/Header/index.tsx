@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+import styles from './styles.module.css';
 
 type HeaderProps = {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ type HeaderProps = {
 export function Header({ children }: HeaderProps) {
   return (
     <header className={styles.header}>
-      <a className={styles.logo} href="/" data-discover="true">
+      <a className={styles.logo} href='/' data-discover='true'>
         {children}
       </a>
     </header>
