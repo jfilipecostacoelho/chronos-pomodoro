@@ -2,8 +2,10 @@ import './styles/theme.css';
 import './styles/global.css';
 
 import { Container } from './components/Container';
-import { Heading } from './components/Heading';
 import { Logo } from './components/Logo';
+import { Menu } from './components/Menu';
+import { Countdown } from './components/Countdown';
+import { DefaultInput } from './components/DefaultInput';
 
 export function App() {
   return (
@@ -13,11 +15,32 @@ export function App() {
       </Container>
 
       <Container>
-        <Heading>MENU</Heading>
+        <Menu />
       </Container>
 
       <Container>
-        <Heading>FORM</Heading>
+        <Countdown />
+      </Container>
+
+      <Container>
+        <form className='form' action=''>
+          <div className='formRow'>
+            <DefaultInput id='meuInput' type='text' labelText='' />
+          </div>
+
+          <div className='formRow'>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <div className='formRow'>
+            <p>Ciclos</p>
+            <p>0 0 0 0 0</p>
+          </div>
+
+          <div className='formRow'>
+            <button>Enviar</button>
+          </div>
+        </form>
       </Container>
     </>
   );
