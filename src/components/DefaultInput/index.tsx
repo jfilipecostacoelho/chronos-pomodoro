@@ -15,10 +15,11 @@ export function DefaultInput({
     <>
       {labelText && <label htmlFor={id}>{labelText}</label>}
       <input
+        className={styles.input}
         id={id}
         type={type}
         {...rest}
-        placeholder='Dê um nome para seu ciclo'
+        placeholder='Digite algo'
       />
     </>
   );
