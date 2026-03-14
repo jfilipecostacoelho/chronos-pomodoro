@@ -7,7 +7,11 @@ export function Cycles() {
   const { state } = useTaskContext();
 
   const cycleStep = Array.from({ length: state.currentCycle });
-  console.log(cycleStep);
+  const cycleDescriptionMap = {
+    workTime: 'focus',
+    shortBreakTime: 'short break',
+    longBreakTime: 'long break',
+  };
 
   return (
     <div className={styles.cycles}>
@@ -16,14 +20,15 @@ export function Cycles() {
       <div className={styles.cycleDots}>
         {cycleStep.map((_, index) => {
           const nextCycle = getNextCycle(index);
-          const nextCycleType = getNextCycleType(index);
+          const nextCycleType = getNextCycleType(nextCycle);
           return (
             <span
+              key={nextCycle}
               className={`${styles.cycleDot} ${styles[nextCycleType]}`}
-              aria-label='Focus cycle indicator'
-              title='Focus cycle indicator'
+              aria-label={`${cycleDescriptionMap[nextCycleType]} cycle indicator.`}
+              title={`${cycleDescriptionMap[nextCycleType]} cycle indicator.`}
             >
-              {nextCycleType + ' ' + nextCycle + ' ' + index}
+              {''}
             </span>
           );
         })}

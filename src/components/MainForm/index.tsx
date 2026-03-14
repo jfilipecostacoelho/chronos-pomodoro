@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from 'lucide-react';
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { Cycles } from '../Cycles';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
@@ -52,6 +52,23 @@ export function MainForm() {
       };
     });
   }
+
+  function handleInterruptTask() {
+    setState(prevState => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        tasks: prevState.tasks.map(task => {
+          if (prevState.activeTask && prevState.activeTask.id === task.id) {
+            return { ...task, interruptedDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    });
+  }
   return (
     <form onSubmit={handleCreateNewTask} className='form' action=''>
       <div className='formRow'>
@@ -61,6 +78,7 @@ export function MainForm() {
           type='text'
           placeholder='Write something'
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
 
@@ -68,12 +86,32 @@ export function MainForm() {
         <p>Next break is in 25 min</p>
       </div>
 
-      <div className='formRow'>
-        <Cycles />
-      </div>
+      {state.currentCycle > 0 && (
+        <div className='formRow'>
+          <Cycles />
+        </div>
+      )}
 
       <div className='formRow'>
-        <DefaultButton icon={<PlayCircleIcon />} color='green' />
+        {!state.activeTask && (
+          <DefaultButton
+            type='submit'
+            aria-label='Start new task'
+            title='Start new task'
+            icon={<PlayCircleIcon />}
+            color='green'
+          />
+        )}
+        {!!state.activeTask && (
+          <DefaultButton
+            type='button'
+            aria-label='Stop current task'
+            title='Stop current task'
+            icon={<StopCircleIcon />}
+            color='red'
+            onClick={handleInterruptTask}
+          />
+        )}
       </div>
     </form>
   );
